@@ -1,14 +1,14 @@
-import e from "express";
+import express from "express";
 
 const asyncHandler = (requestHandler)=>{
     return async (req, res, next)=>{
-        Promise.resolve(requestHandler(req,res,next)).reject((error)=>next(error))
+        Promise.resolve(requestHandler(req,res,next)).catch((error)=>next(error))
     }
 
 }
 
 
-export default asyncHandler;    
+export  {asyncHandler};    
 
 
 // const asyncHandler =(fn)=> async (req,res,next)=>{ 
