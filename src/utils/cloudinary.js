@@ -8,20 +8,22 @@ cloudinary.config({
 
 const uploadOnCloudinary = async (localfilePath) => {
     try {
-        if (!localfilePath) throw new Error("File path is required")
-        const result = await cloudinary.uploader.upload(localfilePath,{
+        if (!localfilePath) return null
+        const result = await cloudinary.uploader.upload(localfilePath, {
             resource_type: "auto",
             public_id: "sample_image",
         })
-        console.log("file has been uploaded successfully", result.url)
-        return result 
+        fs.unlinkSync(localfilePath) // just removes the locally saved temprary file as the file is uploaded
+        // console.log("file has been uploaded successfully", result.url)
+        return result
     } catch (error) {
         fs.unlinkSync(localfilePath) // just removes the locally saved temprary file as the file is uploaded is failed
-        
+        return null
+
     }
 }
 
-export {uploadOnCloudinary}
+export { uploadOnCloudinary }
 
 // cloudinary.v2.uploader.upload("https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg'", { public_id: "shoes" },
 //     function (error, result) {

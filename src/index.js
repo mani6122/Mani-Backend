@@ -28,7 +28,7 @@ const app = express();
     }
 })()
     */
-dotenv.config({path: './.env'});
+dotenv.config({path: './env'});
 connectDB()
 .then(()=>{
     app.on("ERROR_OCCURED ", (error)=>{
