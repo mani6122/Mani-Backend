@@ -21,7 +21,6 @@ export const verifyJWT = asyncHandler
         next()
     } catch (error) {
         throw new ApiError(401, "Unauthorized request")
-        
     }
     
 })
